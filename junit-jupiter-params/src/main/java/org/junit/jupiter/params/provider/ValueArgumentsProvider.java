@@ -31,7 +31,7 @@ class ValueArgumentsProvider implements ArgumentsProvider, AnnotationConsumer<Va
 
 	@Override
 	public void accept(ValueSource source) {
-		List<Object> arrays = Stream.of(source.strings(), source.ints(), source.longs(), source.doubles()) //
+		List<Object> arrays = Stream.of((Object)source.strings(), source.ints(), source.longs(), source.doubles()) //
 				.filter(array -> Array.getLength(array) > 0) //
 				.collect(toList());
 		Preconditions.condition(arrays.size() == 1, () -> "Exactly one type of input must be provided in the @"
